@@ -1,0 +1,84 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+my $dbl = 0;
+my $sgl = 0;
+
+my $dol = chr(36);
+my $bk  = chr(92);
+my $lsb = chr(91);
+my $rsb = chr(93);
+my $lb  = chr(40);
+my $rb  = chr(41);
+my $nl  = chr(10);
+
+my @divided;
+
+my @sgl = ($bk . $lb,  $bk . $rb);
+my @dbl = ($bk . $lsb, $bk . $rsb);
+
+my $file = $ARGV[0];
+
+($file and -e $file) or die &usage;
+
+my $infile = &backup($file);
+
+open (INFILE, $infile)
+    or die "Couldn't open $infile for input: $!\n";
+
+open (OUTFILE, ">$file")
+    or die "Couldn't open $file for output: $!\n";
+
+while (<INFILE>) {
+    chomp;
+    s/$bk$dol$bk$dol/$nl/g;
+
+    while ($_ =~ /$nl/) {
+	s/$nl/$dbl[$dbl]/;
+	$dbl = 1 - $dbl;
+    }
+    
+    s/$bk$dol/$nl/g;
+
+    while ($_ =~ /$nl/) {
+	s/$nl/$sgl[$sgl]/;
+	$sgl = 1 - $sgl;
+    }
+
+    print OUTFILE $_ . $nl;
+}
+
+exit 0;
+
+sub backup {
+    my $file = shift @_;
+    my $bfile = $file . ".bak";
+
+    unless (-e $file) {
+        die "File $file does not exist so can't backup: $!\n";
+    }
+
+    if (-e $bfile) {
+        unlink ($bfile)
+            or die "Couldn't remove old backups: $!\n";
+    }
+
+    rename $file, $bfile;
+    unless (-e $bfile) {
+        die "Couldn't backup $file: $!\n";
+    }
+
+    return $bfile;
+}
+
+sub usage {
+    die<<EOF
+
+dollar.pl texfile
+
+Remove dollar signs from <texfile> replacing with the appropriate
+\\(,\\) and \\[,\\] signs.  Provided it texed alright to begin with and
+that there are no sneaky macros, it should work fine.
+EOF
+}
