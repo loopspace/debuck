@@ -50,10 +50,11 @@ my @dbl = ($bk . $lsb, $bk . $rsb);
 
 # Were we given any arguments?  If so, the filename is the first
 
+my $file;
 if (@ARGV) {
 
-    my $file = $ARGV[0];
-
+    $file = $ARGV[0];
+}
 # File must exist
 
 ($file and -e $file) or pod2usage(-exitval => 1, -verbose => 1);
