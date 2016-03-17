@@ -4,7 +4,7 @@
 # Providing the original document LaTeX'd okay and there are no sneaky
 # macros then it should work fine.
 # 
-# Copyright (C) 2007   Andrew Stacey <stacey@math.ntnu.no>
+# Copyright (C) 2007--2016   Andrew Stacey <loopspace@mathforge.org>
 # 
 # This program is free software; you can redistribute it and/or mod
 # ify it under the terms of the GNU General Public License as
@@ -150,7 +150,7 @@ Andrew Stacey
 
 =head1 LICENSE
 
-Copyright (C) 2008   Andrew Stacey
+Copyright (C) 2008--2016   Andrew Stacey
 
 This program is free software; you can redistribute it and/or mod ify
 it under the terms of the GNU General Public License as published by
