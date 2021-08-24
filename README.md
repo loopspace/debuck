@@ -23,7 +23,7 @@ If given a filename it makes a backup and then puts the new version in place of 
 
 # BUGS
 
-The TeX-style maths delimiters are robust whereas the LaTeX ones are fragile.  Therefore maths in seaction heads or footnotes might not work correctly.
+The TeX-style maths delimiters are robust whereas the LaTeX ones are fragile.  Therefore maths in section heads or footnotes might not work correctly.
 
 # AUTHOR
 
