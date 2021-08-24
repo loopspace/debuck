@@ -119,14 +119,14 @@ __END__
 
 =head1 NAME
 
-debuck - change $ and $$s in a LaTeX document into \(\) and \[\]s.
+debuck - change `$` and `$$`s in a LaTeX document into `\(..\)` and `\[..\]`s.
 
 =head1 SYNOPSIS
 
  debuck file
  debuck < file
 
-Modify I<file> changing $ and $$s in a LaTeX document into \(\) and \[\]s.
+Modify I<file> changing `$` and `$$`s in a LaTeX document into `\(..\)` and `\[..\]`s.
 
  Options:
     --man              print man page
@@ -142,7 +142,9 @@ If given a filename it makes a backup and then puts the new version in place of 
 
 =head1 BUGS
 
-The TeX-style maths delimiters are robust whereas the LaTeX ones are fragile.  Therefore maths in seaction heads or footnotes might not work correctly.
+The TeX-style maths delimiters are robust whereas pre-2015 the LaTeX ones were fragile.  Therefore using maths in section heads or footnotes with a pre-2015 release of LaTeX might not work correctly.
+
+If using dollars for other reasons than to demark mathematics then those will get changed.  For example, TikZ/PGF uses dollars to demark complicated calculations on coordinates.  (This program was written before TikZ existed.)
 
 =head1 AUTHOR
 
